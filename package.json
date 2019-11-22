@@ -1,0 +1,57 @@
+{
+  "name": "findeth-cli",
+  "version": "0.0.0",
+  "description": "Basic command line tool to search for addresses with a mnemonic phrase",
+  "main": "./lib/index.js",
+  "repository": "https://github.com/Mrtenz/findeth-cli",
+  "author": "Maarten Zuidhoorn <maarten@zuidhoorn.com>",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "yarn build",
+    "clean": "rimraf ./lib",
+    "build": "yarn clean && tsc",
+    "prettier": "prettier --write --config ./.prettierrc --list-different './**/*.ts'",
+    "lint": "yarn run lint:ts && yarn run lint:tslint",
+    "lint:ts": "tsc --noEmit",
+    "lint:tslint": "tslint --project ."
+  },
+  "bin": {
+    "findeth": "./lib/index.js"
+  },
+  "files": [
+    "lib"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "dependencies": {
+    "@ethersproject/hdnode": "^5.0.0-beta.133",
+    "commander": "^4.0.1",
+    "ora": "^4.0.3",
+    "ts-node": "^8.5.0",
+    "typescript": "^3.7.2"
+  },
+  "devDependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/listr": "^0.14.2",
+    "@types/node": "^12.12.9",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.4.3",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-microsoft-contrib": "^6.2.0"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write --config ./.prettierrc --config-precedence file-override",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint && yarn run test && lint-staged"
+    }
+  }
+}
