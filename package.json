@@ -1,6 +1,6 @@
 {
   "name": "findeth-cli",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Basic command line tool to search for addresses with a mnemonic phrase",
   "main": "./lib/index.js",
   "repository": "https://github.com/Mrtenz/findeth-cli",
